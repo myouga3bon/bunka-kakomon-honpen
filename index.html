@@ -1,0 +1,75 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>文化学園長野高校 学力検査 過去問</title>
+<style>
+:root{--ink:#33304a;--bg:#fffdf7}
+*{box-sizing:border-box}body{margin:0;font-family:"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;background:var(--bg);color:var(--ink)}
+h1{font-size:1.15rem;text-align:center;margin:.6rem 0 .2rem}
+#nav{position:sticky;top:0;z-index:5;background:rgba(255,253,247,.96);padding:6px 8px;border-bottom:2px dashed #f0e6d8}
+.row{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:4px 0}
+button{font:inherit;border:2px solid;border-radius:999px;padding:6px 12px;font-weight:700;cursor:pointer;color:#33304a}
+.s{background:#ece5ff;border-color:#cbbaff}.a{background:#d9f5f1;border-color:#a6e3da}
+.s.on{background:#8e6bff;border-color:#6a48d8;color:#fff}.a.on{background:#22b8a9;border-color:#148a7e;color:#fff}
+.math{background:#dcecff;border-color:#b3d4fb}.english{background:#ffdfec;border-color:#ffb9d4}.science{background:#fff4b8;border-color:#f2d96b}.social{background:#dcf5d3;border-color:#a9dd96}.japanese{background:#ffe5cc;border-color:#ffc08a}
+.sub.on{filter:brightness(.88);box-shadow:0 0 0 3px #33304a33}
+.m{background:#dcecff;border-color:#b3d4fb}.m.on{background:#5aa5f5;border-color:#3a86d6;color:#fff}
+#title{text-align:center;font-weight:700;margin:8px 0}
+#v1 img{display:block;width:100%;max-width:900px;margin:0 auto 10px;border:1px solid #ddd;background:#fff}
+.pn{text-align:center;font-size:.8rem;color:#888;margin:0}
+#v2{display:none;text-align:center}
+#sp{display:flex;justify-content:center;gap:4px;align-items:flex-start}
+#sp img{width:49.5%;max-height:calc(100vh - 150px);object-fit:contain;border:1px solid #ddd;background:#fff}
+#sp.single img{width:auto;max-width:60%}
+.pg{display:flex;gap:10px;justify-content:center;align-items:center;margin:8px}
+.top{display:block;margin:14px auto;background:#fff;border-color:#cbbaff}
+#msg{text-align:center;padding:30px;color:#888}
+@media (orientation:landscape) and (max-height:500px){#nav{position:static}}
+</style></head><body>
+<h1>文化学園長野高校 学力検査 過去問</h1>
+<div id="nav">
+<div class="row" id="rs"></div><div class="row" id="ra"></div>
+<div class="row" id="rsub"></div>
+<div class="row"><button class="m on" id="m1">1ページずつ(縦スクロール)</button><button class="m" id="m2">2ページずつ表示(タブレット)</button></div>
+</div>
+<div id="title"></div><div id="msg">日程と科目を選んでください</div>
+<div id="v1"></div>
+<div id="v2"><div id="sp"></div><div class="pg"><button class="m" id="nx"></button><span id="pi"></span><button class="m" id="pv"></button></div></div>
+<button class="top" onclick="window.scrollTo(0,0)">▲ トップにもどる</button>
+<script>
+const P={"S5": {"math": ["S5_math_01.jpg", "S5_math_02.jpg", "S5_math_03.jpg", "S5_math_04.jpg", "S5_math_05.jpg", "S5_math_06.jpg", "S5_math_07.jpg"], "english": ["S5_english_01.jpg", "S5_english_02.jpg", "S5_english_03.jpg", "S5_english_04.jpg", "S5_english_05.jpg", "S5_english_06.jpg", "S5_english_07.jpg"], "science": ["S5_science_01.jpg", "S5_science_02.jpg", "S5_science_03.jpg", "S5_science_04.jpg", "S5_science_05.jpg", "S5_science_06.jpg", "S5_science_07.jpg", "S5_science_08.jpg", "S5_science_09.jpg", "S5_science_10.jpg", "S5_science_11.jpg"], "social": ["S5_social_01.jpg", "S5_social_02.jpg", "S5_social_03.jpg", "S5_social_04.jpg", "S5_social_05.jpg", "S5_social_06.jpg", "S5_social_07.jpg", "S5_social_08.jpg", "S5_social_09.jpg", "S5_social_10.jpg", "S5_social_11.jpg"], "japanese": ["S5_japanese_01.jpg", "S5_japanese_02.jpg", "S5_japanese_03.jpg", "S5_japanese_04.jpg", "S5_japanese_05.jpg", "S5_japanese_06.jpg", "S5_japanese_07.jpg", "S5_japanese_08.jpg", "S5_japanese_09.jpg", "S5_japanese_10.jpg", "S5_japanese_11.jpg"]}, "S6": {"math": ["S6_math_01.jpg", "S6_math_02.jpg", "S6_math_03.jpg", "S6_math_04.jpg", "S6_math_05.jpg", "S6_math_06.jpg", "S6_math_07.jpg", "S6_math_08.jpg", "S6_math_09.jpg"], "english": ["S6_english_01.jpg", "S6_english_02.jpg", "S6_english_03.jpg", "S6_english_04.jpg", "S6_english_05.jpg", "S6_english_06.jpg", "S6_english_07.jpg"], "science": ["S6_science_01.jpg", "S6_science_02.jpg", "S6_science_03.jpg", "S6_science_04.jpg", "S6_science_05.jpg", "S6_science_06.jpg", "S6_science_07.jpg", "S6_science_08.jpg", "S6_science_09.jpg", "S6_science_10.jpg"], "social": ["S6_social_01.jpg", "S6_social_02.jpg", "S6_social_03.jpg", "S6_social_04.jpg", "S6_social_05.jpg", "S6_social_06.jpg", "S6_social_07.jpg", "S6_social_08.jpg", "S6_social_09.jpg", "S6_social_10.jpg", "S6_social_11.jpg"], "japanese": ["S6_japanese_01.jpg", "S6_japanese_02.jpg", "S6_japanese_03.jpg", "S6_japanese_04.jpg", "S6_japanese_05.jpg", "S6_japanese_06.jpg", "S6_japanese_07.jpg", "S6_japanese_08.jpg", "S6_japanese_09.jpg", "S6_japanese_10.jpg", "S6_japanese_11.jpg"]}, "S7": {"english": ["S7_english_01.jpg", "S7_english_02.jpg", "S7_english_03.jpg", "S7_english_04.jpg", "S7_english_05.jpg", "S7_english_06.jpg", "S7_english_07.jpg"], "math": ["S7_math_01.jpg", "S7_math_02.jpg", "S7_math_03.jpg", "S7_math_04.jpg", "S7_math_05.jpg", "S7_math_06.jpg", "S7_math_07.jpg", "S7_math_08.jpg"], "science": ["S7_science_01.jpg", "S7_science_02.jpg", "S7_science_03.jpg", "S7_science_04.jpg", "S7_science_05.jpg", "S7_science_06.jpg", "S7_science_07.jpg", "S7_science_08.jpg", "S7_science_09.jpg", "S7_science_10.jpg"], "social": ["S7_social_01.jpg", "S7_social_02.jpg", "S7_social_03.jpg", "S7_social_04.jpg", "S7_social_05.jpg", "S7_social_06.jpg", "S7_social_07.jpg", "S7_social_08.jpg", "S7_social_09.jpg", "S7_social_10.jpg", "S7_social_11.jpg"], "japanese": ["S7_japanese_01.jpg", "S7_japanese_02.jpg", "S7_japanese_03.jpg", "S7_japanese_04.jpg", "S7_japanese_05.jpg", "S7_japanese_06.jpg", "S7_japanese_07.jpg", "S7_japanese_08.jpg", "S7_japanese_09.jpg", "S7_japanese_10.jpg", "S7_japanese_11.jpg"]}, "A5": {"english": ["A5_english_01.jpg", "A5_english_02.jpg", "A5_english_03.jpg", "A5_english_04.jpg", "A5_english_05.jpg", "A5_english_06.jpg", "A5_english_07.jpg"], "math": ["A5_math_01.jpg", "A5_math_02.jpg", "A5_math_03.jpg", "A5_math_04.jpg", "A5_math_05.jpg", "A5_math_06.jpg", "A5_math_07.jpg", "A5_math_08.jpg"], "science": ["A5_science_01.jpg", "A5_science_02.jpg", "A5_science_03.jpg", "A5_science_04.jpg", "A5_science_05.jpg", "A5_science_06.jpg", "A5_science_07.jpg", "A5_science_08.jpg", "A5_science_09.jpg", "A5_science_10.jpg"], "social": ["A5_social_01.jpg", "A5_social_02.jpg", "A5_social_03.jpg", "A5_social_04.jpg", "A5_social_05.jpg", "A5_social_06.jpg", "A5_social_07.jpg", "A5_social_08.jpg", "A5_social_09.jpg", "A5_social_10.jpg", "A5_social_11.jpg"], "japanese": ["A5_japanese_01.jpg", "A5_japanese_02.jpg", "A5_japanese_03.jpg", "A5_japanese_04.jpg", "A5_japanese_05.jpg", "A5_japanese_06.jpg", "A5_japanese_07.jpg", "A5_japanese_08.jpg", "A5_japanese_09.jpg", "A5_japanese_10.jpg", "A5_japanese_11.jpg", "A5_japanese_12.jpg"]}, "A6": {"math": ["A6_math_01.jpg", "A6_math_02.jpg", "A6_math_03.jpg", "A6_math_04.jpg", "A6_math_05.jpg", "A6_math_06.jpg", "A6_math_07.jpg", "A6_math_08.jpg"], "english": ["A6_english_01.jpg", "A6_english_02.jpg", "A6_english_03.jpg", "A6_english_04.jpg", "A6_english_05.jpg", "A6_english_06.jpg", "A6_english_07.jpg"], "science": ["A6_science_01.jpg", "A6_science_02.jpg", "A6_science_03.jpg", "A6_science_04.jpg", "A6_science_05.jpg", "A6_science_06.jpg", "A6_science_07.jpg", "A6_science_08.jpg", "A6_science_09.jpg", "A6_science_10.jpg"], "social": ["A6_social_01.jpg", "A6_social_02.jpg", "A6_social_03.jpg", "A6_social_04.jpg", "A6_social_05.jpg", "A6_social_06.jpg", "A6_social_07.jpg", "A6_social_08.jpg", "A6_social_09.jpg", "A6_social_10.jpg", "A6_social_11.jpg"], "japanese": ["A6_japanese_01.jpg", "A6_japanese_02.jpg", "A6_japanese_03.jpg", "A6_japanese_04.jpg", "A6_japanese_05.jpg", "A6_japanese_06.jpg", "A6_japanese_07.jpg", "A6_japanese_08.jpg", "A6_japanese_09.jpg", "A6_japanese_10.jpg", "A6_japanese_11.jpg", "A6_japanese_12.jpg"]}, "A7": {"english": ["A7_english_01.jpg", "A7_english_02.jpg", "A7_english_03.jpg", "A7_english_04.jpg", "A7_english_05.jpg", "A7_english_06.jpg", "A7_english_07.jpg"], "math": ["A7_math_01.jpg", "A7_math_02.jpg", "A7_math_03.jpg", "A7_math_04.jpg", "A7_math_05.jpg", "A7_math_06.jpg", "A7_math_07.jpg", "A7_math_08.jpg"], "science": ["A7_science_01.jpg", "A7_science_02.jpg", "A7_science_03.jpg", "A7_science_04.jpg", "A7_science_05.jpg", "A7_science_06.jpg", "A7_science_07.jpg", "A7_science_08.jpg", "A7_science_09.jpg", "A7_science_10.jpg"], "social": ["A7_social_01.jpg", "A7_social_02.jpg", "A7_social_03.jpg", "A7_social_04.jpg", "A7_social_05.jpg", "A7_social_06.jpg", "A7_social_07.jpg", "A7_social_08.jpg", "A7_social_09.jpg", "A7_social_10.jpg", "A7_social_11.jpg"], "japanese": ["A7_japanese_01.jpg", "A7_japanese_02.jpg", "A7_japanese_03.jpg", "A7_japanese_04.jpg", "A7_japanese_05.jpg", "A7_japanese_06.jpg", "A7_japanese_07.jpg", "A7_japanese_08.jpg", "A7_japanese_09.jpg", "A7_japanese_10.jpg"]}};
+const EX=[['S5','令和５ 12月S日程','s'],['S6','令和６ 12月S日程','s'],['S7','令和７ 12月S日程','s'],['A5','令和５ 1月A日程','a'],['A6','令和６ 1月A日程','a'],['A7','令和７ 1月A日程','a']];
+const SUB=[['math','数学'],['english','英語'],['science','理科'],['social','社会'],['japanese','国語']];
+let ex=null,sb=null,mode=1,idx=0;
+const $=i=>document.getElementById(i);
+EX.forEach(([k,l,c])=>{const b=document.createElement('button');b.className=c;b.textContent=l;b.dataset.k=k;b.onclick=()=>{ex=k;idx=0;show()};$(c=='s'?'rs':'ra').appendChild(b)});
+SUB.forEach(([k,l])=>{const b=document.createElement('button');b.className='sub '+k;b.textContent=l;b.dataset.k=k;b.onclick=()=>{sb=k;idx=0;show()};$('rsub').appendChild(b)});
+$('m1').onclick=()=>{mode=1;show()};$('m2').onclick=()=>{mode=2;idx=0;show()};
+function show(){
+ document.querySelectorAll('#rs button,#ra button').forEach(b=>b.classList.toggle('on',b.dataset.k==ex));
+ document.querySelectorAll('.sub').forEach(b=>b.classList.toggle('on',b.dataset.k==sb));
+ $('m1').classList.toggle('on',mode==1);$('m2').classList.toggle('on',mode==2);
+ if(!ex||!sb)return;
+ $('msg').style.display='none';
+ const L=P[ex][sb];const e=EX.find(x=>x[0]==ex)[1],s=SUB.find(x=>x[0]==sb)[1];
+ $('title').textContent=e+' '+s+'（全'+L.length+'ページ）';
+ if(mode==1){$('v2').style.display='none';$('v1').style.display='block';
+  $('v1').innerHTML=L.map((f,i)=>'<p class="pn">'+(i+1)+' / '+L.length+'</p><img loading="lazy" src="'+f+'">').join('')}
+ else{$('v1').style.display='none';$('v2').style.display='block';draw()}
+}
+function draw(){
+ const L=P[ex][sb],rtl=sb=='japanese';
+ const n=Math.ceil(L.length/2);if(idx<0)idx=0;if(idx>=n)idx=n-1;
+ let pr=L.slice(idx*2,idx*2+2),nums=[idx*2+1,idx*2+2].slice(0,pr.length);
+ if(rtl)pr=pr.reverse();
+ $('sp').className=pr.length==1?'single':'';
+ $('sp').innerHTML=pr.map(f=>'<img src="'+f+'">').join('');
+ $('pi').textContent=nums.join('-')+' / '+L.length+'ページ';
+ const nx=$('nx'),pv=$('pv');
+ if(rtl){nx.textContent='◀ 次へ';pv.textContent='前へ ▶';nx.style.order=0;pv.style.order=2}
+ else{nx.textContent='次へ ▶';pv.textContent='◀ 前へ';nx.style.order=2;pv.style.order=0}
+ $('pi').style.order=1;
+}
+$('nx').onclick=()=>{idx++;draw()};$('pv').onclick=()=>{idx--;draw()};
+document.addEventListener('keydown',e=>{if(mode!=2||!ex||!sb)return;const r=sb=='japanese';if(e.key=='ArrowRight'){idx+=r?-1:1;draw()}if(e.key=='ArrowLeft'){idx+=r?1:-1;draw()}});
+let tx=null;$('v2').addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+$('v2').addEventListener('touchend',e=>{if(tx==null)return;const d=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(d)<60)return;const r=sb=='japanese';idx+=((d<0)!==r)?1:-1;draw()});
+</script></body></html>
